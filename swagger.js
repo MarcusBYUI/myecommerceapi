@@ -5,8 +5,8 @@ const doc = {
     title: "My Ecommerce API",
     description: "This is the api docummentation for my ecommerce api",
   },
-  host: "localhost:3000",
-  schemes: ["http"],
+  host: "radiant-gorge-19536.herokuapp.com",
+  schemes: ["https"],
 };
 
 const outputFile = "./routes/swagger-output.json";

@@ -5,10 +5,10 @@
     "description": "This is the api docummentation for my ecommerce api",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "radiant-gorge-19536.herokuapp.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
