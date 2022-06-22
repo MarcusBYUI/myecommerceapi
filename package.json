@@ -1,0 +1,33 @@
+{
+  "name": "myecommerceapi",
+  "version": "1.0.0",
+  "description": "API for an ecommerce application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcusBYUI/myecommerceapi.git"
+  },
+  "author": "Marcus Ojo-Osasere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcusBYUI/myecommerceapi/issues"
+  },
+  "homepage": "https://github.com/MarcusBYUI/myecommerceapi#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.4.0",
+    "swagger-autogen": "^2.21.3",
+    "swagger-ui-express": "^4.4.0"
+  }
+}

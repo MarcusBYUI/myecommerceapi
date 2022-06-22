@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My Ecommerce API",
+    "description": "This is the api docummentation for my ecommerce api",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/": {
+      "get": {
+        "description": "Returns all products",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "Adds a new product",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "New product",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Headset"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "a product"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "accessories"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "images/headset.png"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 78
+                },
+                "shipping": {
+                  "type": "string",
+                  "example": "free"
+                },
+                "upvotes": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "category",
+                "image",
+                "price"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
