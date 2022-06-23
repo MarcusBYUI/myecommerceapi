@@ -1,6 +1,6 @@
 const routes = require("express").Router();
 const {
-  addProducts,
+  addProduct,
   getProducts,
   getProductById,
   updateProduct,
@@ -9,17 +9,17 @@ const {
 
 routes.get("/", getProducts);
 
-// routes.get("/:id", getProductById);
+routes.get("/:id", getProductById);
 
 //post
-routes.post("/", addProducts);
+routes.post("/", addProduct);
 
 //put
 
-// routes.put("/:id", updateProduct);
+routes.put("/:id", updateProduct);
 
-// //del
+//del
 
-// routes.delete("/:id", deleteProduct);
+routes.delete("/:id", deleteProduct);
 
 module.exports = routes;
