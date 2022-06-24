@@ -5,6 +5,7 @@ const Joi = require("joi");
 
 const getProducts = async (req, res, next) => {
   // #swagger.description = 'Returns all products'
+
   try {
     const products = await Products.find();
     res.json(products);
@@ -14,14 +15,24 @@ const getProducts = async (req, res, next) => {
 };
 
 const getProductById = async (req, res, next) => {
-  try {
-    const post = await Products.findById(req.params.id);
+  // #swagger.description = 'Returns product by ID'
+  /*
+            #swagger.responses[200] = {
+            description: 'Product successfully obtained'}
+            #swagger.responses[422] = {
+            description: 'Kindly check the provided Id'}
 
-    if (!post) {
+  
+  */
+
+  try {
+    const product = await Products.findById(req.params.id);
+
+    if (!product) {
       next(createError(422, "Product does not exist"));
       return;
     }
-    res.status(200).json(post);
+    res.status(200).json(product);
   } catch (error) {
     if (error instanceof mongoose.CastError) {
       next(createError(422, "Invalid product ID"));
@@ -46,22 +57,48 @@ const addProduct = async (req, res, next) => {
                     shipping: 'free',
                     upvotes: 0,
                 }
-        } */
-  const products = new Products({
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    image: req.body.image,
-    price: req.body.price,
-    shipping: req.body.shipping,
-    upvotes: req.body.upvotes,
+        }
+        #swagger.responses[200] = {
+            description: 'Product successfully added'}
+        #swagger.responses[422] = {
+            description: 'Kindly check the provided data'}
+            
+
+        */
+
+  const schema = Joi.object().keys({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    category: Joi.string().required(),
+    image: Joi.string()
+      .pattern(new RegExp("images/[a-zA-Z0-9]+.png"))
+      .required(),
+    price: Joi.number().required(),
+    shipping: Joi.string(),
+    upvotes: Joi.number(),
   });
 
   try {
+    //validation
+    const value = await schema.validateAsync(req.body);
+
+    const products = new Products({
+      name: value.name,
+      description: value.description,
+      category: value.category,
+      image: value.image,
+      price: value.price,
+      shipping: value.shipping,
+      upvotes: value.upvotes,
+    });
+
+    //DB insertion
     const savedProducts = await products.save();
-    res.json(savedProducts._id);
+    res
+      .status(200)
+      .send(`Product with Id ${savedProducts._id} was added succesfully`);
   } catch (error) {
-    if (error.name === "ValidatorError") {
+    if (error.name == "ValidationError") {
       next(createError.UnprocessableEntity(error.message));
       return;
     }
@@ -71,20 +108,29 @@ const addProduct = async (req, res, next) => {
 
 const updateProduct = async (req, res, next) => {
   /*  
-  // #swagger.description = 'Adds a new product'
+  // #swagger.description = 'Update an existing product'
   #swagger.parameters['product'] = {
                 in: 'body',
-                description: 'New product',
+                description: 'Existing product',
                 schema: {
-                    $name: 'Headset',
-                    $description: 'a product',
-                    $category: 'accessories',
-                    $image: 'images/headset.png',
-                    $price: 78,
+                    name: 'Headset',
+                    description: 'a product',
+                    category: 'accessories',
+                    image: 'images/headset.png',
+                    price: 78,
                     shipping: 'free',
                     upvotes: 0,
                 }
-        } */
+        }
+        
+            #swagger.responses[200] = {
+            description: 'Product successfully Updated'}
+            #swagger.responses[422] = {
+            description: 'Kindly check the provided data'}
+
+  
+        
+        */
   const document = {};
   const keys = [
     "name",
@@ -120,6 +166,7 @@ const updateProduct = async (req, res, next) => {
   });
 
   try {
+    //validation
     const value = await schema.validateAsync(document);
 
     const updateResult = await Products.updateOne(
@@ -128,11 +175,18 @@ const updateProduct = async (req, res, next) => {
       },
       { $set: value }
     );
-    updateResult.modifiedCount > 0
-      ? res
+
+    return updateResult.modifiedCount > 0
+      ? //if update went through
+        res
           .status(200)
           .send(`Product with Id ${req.params.id} was updated succesfully`)
-      : res.status(200).send(`No update was made`);
+      : // if
+      updateResult.matchedCount < 1
+      ? //if product does not exist
+        next(createError(422, "Product does not exist"))
+      : // product exist but nothing was updated
+        res.status(200).send(`No update was made`);
   } catch (error) {
     if (error instanceof mongoose.CastError) {
       next(createError(422, "Invalid product ID"));
@@ -143,6 +197,16 @@ const updateProduct = async (req, res, next) => {
 };
 
 const deleteProduct = async (req, res, next) => {
+  // #swagger.description = 'Delete an existing product'
+
+  /*
+              #swagger.responses[200] = {
+            description: 'Product successfully Deleted'}
+            #swagger.responses[422] = {
+            description: 'Kindly check the provided Id'}
+  
+  */
+
   try {
     const result = await Products.deleteOne({
       _id: req.params.id,

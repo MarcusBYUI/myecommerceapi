@@ -8,6 +8,8 @@ const swaggerDocument = require("./swagger-output.json");
 
 //Home route
 routes.get("/", (req, res) => {
+  // #swagger.description = 'API home route'
+
   res.json({
     name: "myecommerceapi",
     version: "1.0.0",

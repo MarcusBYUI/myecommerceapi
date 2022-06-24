@@ -7,13 +7,11 @@
   },
   "host": "radiant-gorge-19536.herokuapp.com",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "API home route",
         "parameters": [],
         "responses": {
           "200": {
@@ -71,19 +69,113 @@
                   "example": 0
                 }
               },
-              "required": [
-                "name",
-                "description",
-                "category",
-                "image",
-                "price"
-              ]
+              "required": ["name", "description", "category", "image", "price"]
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Product successfully added"
+          },
+          "422": {
+            "description": "Kindly check the provided data"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "description": "Returns product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product successfully obtained"
+          },
+          "422": {
+            "description": "Kindly check the provided Id"
+          }
+        }
+      },
+      "put": {
+        "description": "Update an existing product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Existing product",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Headset"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "a product"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "accessories"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "images/headset.png"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 78
+                },
+                "shipping": {
+                  "type": "string",
+                  "example": "free"
+                },
+                "upvotes": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product successfully Updated"
+          },
+          "422": {
+            "description": "Kindly check the provided data"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete an existing product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product successfully Deleted"
+          },
+          "422": {
+            "description": "Kindly check the provided Id"
           }
         }
       }
