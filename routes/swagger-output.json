@@ -5,13 +5,36 @@
     "description": "This is the api docummentation for my ecommerce api",
     "version": "1.0.0"
   },
-  "host": "radiant-gorge-19536.herokuapp.com",
+  "host": "localhost:3000",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/": {
       "get": {
         "description": "API home route",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/login": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/google/redirect": {
+      "get": {
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -69,7 +92,13 @@
                   "example": 0
                 }
               },
-              "required": ["name", "description", "category", "image", "price"]
+              "required": [
+                "name",
+                "description",
+                "category",
+                "image",
+                "price"
+              ]
             }
           }
         ],
@@ -176,6 +205,74 @@
           },
           "422": {
             "description": "Kindly check the provided Id"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "Returns user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully obtained"
+          },
+          "422": {
+            "description": "Kindly check the provided Id"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "post": {
+        "description": "Adds a new User",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "New User",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "type": "string",
+                  "example": "New"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "User"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "accessories@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "test1245?"
+                }
+              },
+              "required": [
+                "firstname",
+                "lastname",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully added"
+          },
+          "422": {
+            "description": "Kindly check the provided data"
           }
         }
       }

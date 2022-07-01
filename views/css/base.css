@@ -1,0 +1,128 @@
+.header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  border-bottom: 2px solid black;
+  margin: 30px auto;
+}
+
+.header-grid img {
+  width: 32px;
+  align-self: center;
+  justify-self: end;
+}
+
+.header-grid h1 {
+  font-size: 24px;
+  justify-self: start;
+}
+
+.home-hero {
+  margin: 30px auto 5px auto;
+  max-width: 1000px;
+}
+
+.home-hero img {
+  width: 100%;
+}
+
+.home-hero h2,
+.product-section h2 {
+  text-align: center;
+}
+
+.home-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+  text-align: center;
+  justify-content: center;
+  max-width: 1200px;
+  grid-gap: 15px;
+  margin: 0 auto;
+}
+
+.home-product {
+  padding: 10px 0;
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+.home-product img {
+  width: 100px;
+}
+
+.home-product a {
+  display: block;
+}
+
+.footer-container {
+  max-width: 1200px;
+  border-top: 2px solid black;
+  margin: 30px auto;
+}
+
+.product-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-page-grid img {
+  width: 300px;
+  justify-self: center;
+}
+
+.product-page-details {
+  width: 400px;
+}
+
+.login-page {
+  width: 500px;
+  margin: 40px auto;
+  padding: 20px 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+.login-page h1,
+.login-page a,
+.login-page p {
+  display: block;
+  text-align: center;
+}
+
+.login-page img {
+  width: 180px;
+  border-radius: 4px;
+}
+
+.login-page form {
+  margin: 25px auto;
+  padding: 0 30px;
+}
+
+.login-page form input {
+  display: block;
+  border-radius: 5px;
+}
+
+.login-page form label {
+  display: block;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.login-page form label input {
+  width: 100%;
+  height: 25px;
+  margin-top: 5px;
+}
+
+.submit-login {
+  display: block;
+  margin: 25px auto;
+  background-color: white;
+  height: 35px;
+  cursor: pointer;
+}

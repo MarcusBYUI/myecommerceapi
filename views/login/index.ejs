@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce API Profile Page</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/medium.css" />
+    <link rel="stylesheet" href="css/large.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-grid">
+        <h1>My Ecoomerce API</h1>
+        <img src="../images/backpack.svg" alt="" />
+      </div>
+    </header>
+    <main>
+      <section class="login-page">
+        <h1>Login/Register</h1>
+        <a href="/auth/google"><img src="../images/google.png" alt="google sign in"> </a>
+        <p>OR</p>
+        <form action="">
+            <label> Email
+                <input name="username" type="email" required>
+            </label>
+            <label> Password
+                <input name="password" type="text" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+            </label>
+            <input class="submit-login" type="submit" value="Login/Register" >
+        </form>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <h4>This is a Demo store.....: Author: Ojo-Osasere Ayodeji Marcus</h4>
+      </div>
+    </footer>
+  </body>
+</html>

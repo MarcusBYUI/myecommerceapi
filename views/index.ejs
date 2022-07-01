@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce API Home</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/medium.css" />
+    <link rel="stylesheet" href="../css/large.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-grid">
+        <h1>My Ecoomerce API</h1>
+        <% if (user.firstname) { %>
+        <h3>Logout</h3>
+        <% } else{%>
+        <h3>Login</h3>
+        <% }%>
+      </div>
+    </header>
+    <main>
+      <div class="home-hero">
+        <h2>Home Of Gadgets</h2>
+
+        <img src="images/hero.webp" alt="" />
+      </div>
+
+      <section class="product-section">
+        <h2>Our Products</h2>
+
+        <div class="home-products-grid"></div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <h4>This is a Demo store.....: Author: Ojo-Osasere Ayodeji Marcus</h4>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>
