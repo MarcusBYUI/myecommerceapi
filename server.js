@@ -13,13 +13,13 @@ dotenv.config();
 //init express and middlewares
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 const PORT = process.env.PORT || 3000;
-app.set("view engine", "ejs");
+//app.set("view engine", "ejs");
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: process.env.keys,
+    keys: ["dijvioduvsdvndsijn"],
   })
 );
 //passport

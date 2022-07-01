@@ -71,7 +71,7 @@ const google = passport.authenticate("google", {
 });
 
 const googleRedirect = async (req, res, next) => {
-  res.send("logged in");
+  res.redirect("/auth/success");
 };
 
 const addUser = async (req, res, next) => {

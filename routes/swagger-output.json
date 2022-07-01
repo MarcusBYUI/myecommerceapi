@@ -5,11 +5,24 @@
     "description": "This is the api docummentation for my ecommerce api",
     "version": "1.0.0"
   },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "oauth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://localhost:3000/auth/google",
+      "flow": "implicit",
+      "scopes": {
+        "read:user": "read user data"
+      }
+    }
+  },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
@@ -42,10 +55,7 @@
                   "example": "test1245?"
                 }
               },
-              "required": [
-                "email",
-                "password"
-              ]
+              "required": ["email", "password"]
             }
           }
         ],
@@ -61,7 +71,7 @@
     },
     "/auth/logout": {
       "get": {
-        "description": "",
+        "description": "Logout a User",
         "parameters": [],
         "responses": {
           "200": {
@@ -98,12 +108,7 @@
                   "example": "test1245?"
                 }
               },
-              "required": [
-                "firstname",
-                "lastname",
-                "email",
-                "password"
-              ]
+              "required": ["firstname", "lastname", "email", "password"]
             }
           }
         ],
@@ -188,13 +193,7 @@
                   "example": 0
                 }
               },
-              "required": [
-                "name",
-                "description",
-                "category",
-                "image",
-                "price"
-              ]
+              "required": ["name", "description", "category", "image", "price"]
             }
           }
         ],
@@ -303,6 +302,18 @@
             "description": "Kindly check the provided Id"
           }
         }
+      }
+    },
+    "/users/": {
+      "get": {
+        "description": "Returns all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [{ "oauth": ["post:user"] }]
       }
     },
     "/users/{id}": {

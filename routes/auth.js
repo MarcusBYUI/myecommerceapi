@@ -12,6 +12,10 @@ routes.post("/login", login);
 routes.get("/logout", logout);
 routes.post("/signup", addUser);
 
+routes.get("/success", (req, res, next) => {
+  res.send(req.user);
+});
+
 //auth with google
 routes.get("/google", google);
 
