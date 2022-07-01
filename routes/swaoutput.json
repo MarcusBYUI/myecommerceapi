@@ -5,138 +5,31 @@
     "description": "This is the api docummentation for my ecommerce api",
     "version": "1.0.0"
   },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "oauth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://localhost:3000/auth/google",
+      "flow": "implicit",
+      "scopes": {
+        "post:user": "add a user",
+        "read:user": "read a user data"
+      }
+    }
+  },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
         "description": "API home route",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "description": "Login a User",
-        "parameters": [
-          {
-            "name": "User",
-            "in": "body",
-            "description": "Login User",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string",
-                  "example": "accessories@gmail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "test1245?"
-                }
-              },
-              "required": [
-                "email",
-                "password"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User successfully Logged In"
-          },
-          "422": {
-            "description": "Kindly check the provided data"
-          }
-        }
-      }
-    },
-    "/auth/logout": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/auth/signup": {
-      "post": {
-        "description": "Adds a new User",
-        "parameters": [
-          {
-            "name": "User",
-            "in": "body",
-            "description": "New User",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstname": {
-                  "type": "string",
-                  "example": "New"
-                },
-                "lastname": {
-                  "type": "string",
-                  "example": "User"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "accessories@gmail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "test1245?"
-                }
-              },
-              "required": [
-                "firstname",
-                "lastname",
-                "email",
-                "password"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User successfully Logged In"
-          },
-          "422": {
-            "description": "Kindly check the provided data"
-          }
-        }
-      }
-    },
-    "/auth/google": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/auth/google/redirect": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       }
     },
     "/products/": {
@@ -188,13 +81,7 @@
                   "example": 0
                 }
               },
-              "required": [
-                "name",
-                "description",
-                "category",
-                "image",
-                "price"
-              ]
+              "required": ["name", "description", "category", "image", "price"]
             }
           }
         ],
@@ -323,7 +210,51 @@
           "422": {
             "description": "Kindly check the provided Id"
           }
-        }
+        },
+        "security": [{ "oauth": ["post:user"] }]
+      }
+    },
+    "/users/": {
+      "post": {
+        "description": "Adds a new User",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "New User",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "type": "string",
+                  "example": "New"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "User"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "accessories@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "test1245?"
+                }
+              },
+              "required": ["firstname", "lastname", "email", "password"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully added"
+          },
+          "422": {
+            "description": "Kindly check the provided data"
+          }
+        },
+        "security": [{ "oauth": ["post:user"] }]
       }
     }
   }

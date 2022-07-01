@@ -1,8 +1,16 @@
 const routes = require("express").Router();
 const passport = require("passport");
-const { login, google, googleRedirect } = require("../controller/auth");
+const {
+  login,
+  logout,
+  google,
+  googleRedirect,
+  addUser,
+} = require("../controller/auth");
 
-routes.get("/login", login);
+routes.post("/login", login);
+routes.get("/logout", logout);
+routes.post("/signup", addUser);
 
 //auth with google
 routes.get("/google", google);

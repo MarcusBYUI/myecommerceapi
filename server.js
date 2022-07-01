@@ -22,13 +22,12 @@ app.use(
     keys: process.env.keys,
   })
 );
-
-//routes
-app.use("/", Routes);
-
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//routes
+app.use("/", Routes);
 
 //start server and db
 mongodb.initDb((err, mongodb) => {

@@ -3,7 +3,6 @@ const express = require("express");
 const createError = require("http-errors");
 const productsRoute = require("./products");
 const UsersRoute = require("./users");
-const OrdersRoute = require("./orders");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger-output.json");
 const authRoute = require("./auth");

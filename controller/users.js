@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const createError = require("http-errors");
-const Joi = require("joi");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
 
 const getUserById = async (req, res, next) => {
   // #swagger.description = 'Returns user by ID'
@@ -32,61 +29,15 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-const addUser = async (req, res, next) => {
-  /*  
-  // #swagger.description = 'Adds a new User'
-  #swagger.parameters['User'] = {
-                in: 'body',
-                description: 'New User',
-                schema: {
-                    $firstname: 'New',
-                    $lastname: 'User',
-                    $email: 'accessories@gmail.com',
-                    $password: 'test1245?',
-                }
-        }
-        #swagger.responses[200] = {
-            description: 'User successfully added'}
-        #swagger.responses[422] = {
-            description: 'Kindly check the provided data'}
-            
-
-        */
-
-  const schema = Joi.object().keys({
-    firstname: Joi.string().required(),
-    lastname: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string(),
-  });
+const getUsers = async (req, res, next) => {
+  // #swagger.description = 'Returns all users'
 
   try {
-    //validation
-    const value = await schema.validateAsync(req.body);
-
-    bcrypt.genSalt(saltRounds, function (err, salt) {
-      bcrypt.hash(value.password, salt, async function (err, hash) {
-        const user = new User({
-          firstname: value.firstname,
-          lastname: value.lastname,
-          email: value.email,
-          password: hash,
-        });
-
-        //DB insertion
-        const savedUser = await user.save();
-        res
-          .status(200)
-          .send(`User with Id ${savedUser._id} was added succesfully`);
-      });
-    });
+    const users = await User.find();
+    res.json(users);
   } catch (error) {
-    if (error.name == "ValidationError") {
-      next(createError.UnprocessableEntity(error.message));
-      return;
-    }
     next(error);
   }
 };
 
-module.exports = { getUserById, addUser };
+module.exports = { getUserById, getUsers };
