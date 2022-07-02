@@ -13,16 +13,16 @@
     },
     "oauth": {
       "type": "oauth2",
-      "authorizationUrl": "http://localhost:3000/auth/google",
+      "authorizationUrl": "https://radiant-gorge-19536.herokuapp.com/auth/google",
       "flow": "implicit",
       "scopes": {
         "read:user": "read user data"
       }
     }
   },
-  "host": "localhost:3000",
+  "host": "radiant-gorge-19536.herokuapp.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
