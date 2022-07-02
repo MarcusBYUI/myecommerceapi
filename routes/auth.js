@@ -13,7 +13,7 @@ routes.get("/logout", logout);
 routes.post("/signup", addUser);
 
 routes.get("/success", (req, res, next) => {
-  res.send(req.user);
+  res.send("User successfully Logged In");
 });
 
 //auth with google

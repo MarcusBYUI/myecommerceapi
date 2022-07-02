@@ -122,28 +122,6 @@
         }
       }
     },
-    "/auth/google": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/auth/google/redirect": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/products/": {
       "get": {
         "description": "Returns all products",
@@ -313,7 +291,7 @@
             "description": "OK"
           }
         },
-        "security": [{ "oauth": ["post:user"] }]
+        "security": [{ "oauth": ["read:user"] }]
       }
     },
     "/users/{id}": {
@@ -334,7 +312,8 @@
           "422": {
             "description": "Kindly check the provided Id"
           }
-        }
+        },
+        "security": [{ "oauth": ["read:user"] }]
       }
     }
   }
