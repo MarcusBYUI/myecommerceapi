@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: ["dijvioduvsdvndsijn"],
+    keys: [process.env.keys],
   })
 );
 //passport
