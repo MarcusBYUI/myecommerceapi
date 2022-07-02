@@ -23,6 +23,7 @@ app.use(
   })
 );
 //passport
+app.enable("trust proxy");
 app.use(passport.initialize());
 app.use(passport.session());
 
