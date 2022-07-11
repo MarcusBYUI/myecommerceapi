@@ -7,7 +7,7 @@ const createError = require("http-errors");
 dotenv.config();
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -35,6 +35,7 @@ passport.use(
           };
           const user = new User(doc);
           const savedUser = await user.save();
+          done(null, savedUser);
         }
       } catch (error) {
         if (error.name == "ValidationError") {

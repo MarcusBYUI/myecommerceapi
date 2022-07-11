@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({ credentials: true }));
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 //app.set("view engine", "ejs");
 app.use(
   cookieSession({
